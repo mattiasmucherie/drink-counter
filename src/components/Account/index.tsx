@@ -1,8 +1,22 @@
 import React from "react";
+import PasswordForget from "../PasswordForget";
+import PasswordChange from "../PasswordChange";
+import { withAuthorization, AuthUserContext } from "../Session";
 
 const Account = () => (
-  <div>
-    <h1>Account</h1>
-  </div>
+  <AuthUserContext.Consumer>
+    {authUser => {
+      if (authUser) {
+        return (
+          <div>
+            <h1>Account: {authUser.email}</h1>
+            <PasswordForget />
+            <PasswordChange />
+          </div>
+        );
+      }
+    }}
+  </AuthUserContext.Consumer>
 );
-export default Account;
+const condition = (authUser: firebase.User | null) => !!authUser;
+export default withAuthorization(condition)(Account);

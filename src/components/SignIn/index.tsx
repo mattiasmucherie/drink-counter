@@ -4,10 +4,14 @@ import * as ROUTES from "../../constants/routes";
 import { useForm } from "react-hook-form";
 import { signInInitialState } from "../../constants/types";
 import Firebase, { withFirebase } from "../Firebase";
+import { PasswordForgetLink } from "../PasswordForget";
+import { SignUpLink } from "../SignUp";
 
 const SignIn = () => (
   <div>
     <SignInForm />
+    <PasswordForgetLink />
+    <SignUpLink />
   </div>
 );
 interface signInFormProps extends RouteComponentProps {

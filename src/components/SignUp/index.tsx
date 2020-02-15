@@ -18,15 +18,21 @@ const SignUpFormBase: React.FC<signUpFormProps> = props => {
   const { register, handleSubmit, errors, watch } = useForm<
     signUpInitialState
   >();
-  const onSubmit = handleSubmit((data: signUpInitialState) => {
+  const onSubmit = handleSubmit(async (data: signUpInitialState) => {
+    const { username, email, password } = data;
     if (props.firebase) {
-      props.firebase
-        .doCreateUserWithEmailAndPassword(data.email, data.password)
-        .then(authUser => {
-          console.log(authUser);
-          props.history.push(ROUTES.HOME);
-        })
-        .catch(err => console.log(err));
+      try {
+        const authUser = await props.firebase.doCreateUserWithEmailAndPassword(
+          email,
+          password
+        );
+        if (authUser.user) {
+          await props.firebase.user(authUser.user.uid).set({ username, email });
+        }
+        props.history.push(ROUTES.HOME);
+      } catch (err) {
+        console.log(err);
+      }
     }
   });
   const isInvalid =

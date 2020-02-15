@@ -9,3 +9,12 @@ export type signInInitialState = {
   email: string;
   password: string;
 };
+
+export type PasswordForgetInitialState = {
+  email: string;
+};
+
+export type PasswordUpdateInitialState = {
+  password: string;
+  passwordConfirm: string;
+};

@@ -8,7 +8,7 @@ interface adminPageProps {
 
 const AdminPage: React.FC<adminPageProps> = props => {
   const [loading, setLoading] = useState(false);
-  const [users, setUsers] = useState({});
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     setLoading(true);
     const fetchUsers = async () => {
@@ -16,9 +16,9 @@ const AdminPage: React.FC<adminPageProps> = props => {
         try {
           const usersFirebase = await props.firebase.users().get();
           setLoading(false);
-          const usersReact: any = {};
+          const usersReact: any = [];
           usersFirebase.forEach(doc => {
-            usersReact[doc.id] = doc.data();
+            usersReact.push(doc.data());
           });
           setUsers(usersReact);
         } catch (err) {
@@ -33,7 +33,16 @@ const AdminPage: React.FC<adminPageProps> = props => {
     <div>
       <h1>Admin</h1>
       <p>Restricted area! Only users with the admin role are authorized.</p>
-      <p>{loading ? "Loading" : null}</p>
+      {loading ? (
+        <p>Loading</p>
+      ) : (
+        users.map((user: { email: string; username: string }) => (
+          <div key={user.email} style={{ marginBottom: "30px" }}>
+            <p>{user.email}</p>
+            <p>{user.username}</p>
+          </div>
+        ))
+      )}
     </div>
   );
 };

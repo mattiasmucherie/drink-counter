@@ -9,19 +9,26 @@ import PasswordForget from "../PasswordForget";
 import Home from "../Home";
 import Account from "../Account";
 import Admin from "../Admin";
+import Firebase from "../Firebase";
+import { withAuthentication } from "../Session";
 
-const App: React.FC = () => (
-  <Router>
-    <Navigation></Navigation>
-    <hr />
-    <Route exact path={ROUTES.LANDING} component={LandingPage} />
-    <Route path={ROUTES.SIGN_IN} component={SignIn} />
-    <Route path={ROUTES.SIGN_UP} component={SignUp} />
-    <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-    <Route path={ROUTES.HOME} component={Home} />
-    <Route path={ROUTES.ACCOUNT} component={Account} />
-    <Route path={ROUTES.ADMIN} component={Admin} />
-  </Router>
-);
+interface AppProps {
+  firebase: Firebase | null;
+}
+const App: React.FC<AppProps> = props => {
+  return (
+    <Router>
+      <Navigation />
+      <hr />
+      <Route exact path={ROUTES.LANDING} component={LandingPage} />
+      <Route path={ROUTES.SIGN_IN} component={SignIn} />
+      <Route path={ROUTES.SIGN_UP} component={SignUp} />
+      <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
+      <Route path={ROUTES.HOME} component={Home} />
+      <Route path={ROUTES.ACCOUNT} component={Account} />
+      <Route path={ROUTES.ADMIN} component={Admin} />
+    </Router>
+  );
+};
 
-export default App;
+export default withAuthentication(App);

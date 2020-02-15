@@ -3183,6 +3183,13 @@ compose-function@3.0.3:
   dependencies:
     arity-n "^1.0.4"
 
+compose@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/compose/-/compose-0.1.2.tgz#d556f55d0a91399df4227945c1bd96030310fe7c"
+  integrity sha1-1Vb1XQqROZ30InlFwb2WAwMQ/nw=
+  dependencies:
+    patr "0.2.5"
+
 compressible@~2.0.16:
   version "2.0.18"
   resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.18.tgz#af53cca6b070d4c3c0750fbd77286a6d7cc46fba"
@@ -7892,6 +7899,13 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+patr@0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/patr/-/patr-0.2.5.tgz#4231e87f0dac5b766b0475cd4ac94bd9c3563de7"
+  integrity sha1-QjHofw2sW3ZrBHXNSslL2cNWPec=
+  dependencies:
+    promised-io "0.2.3"
+
 pbkdf2@^3.0.3:
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/pbkdf2/-/pbkdf2-3.0.17.tgz#976c206530617b14ebb32114239f7b09336e93a6"
@@ -8740,6 +8754,11 @@ promise@^8.0.3:
   dependencies:
     asap "~2.0.6"
 
+promised-io@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/promised-io/-/promised-io-0.2.3.tgz#65b9219cc60c1dda64d3e60f86335368c2e56c96"
+  integrity sha1-ZbkhnMYMHdpk0+YPhjNTaMLlbJY=
+
 prompts@^2.0.1:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/prompts/-/prompts-2.3.0.tgz#a444e968fa4cc7e86689a74050685ac8006c4cc4"
@@ -8997,6 +9016,11 @@ react-error-overlay@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.5.tgz#55d59c2a3810e8b41922e0b4e5f85dcf239bd533"
   integrity sha512-+DMR2k5c6BqMDSMF8hLH0vYKtKTeikiFW+fj0LClN+XZg4N9b8QUAdHC62CGWNLTi/gnuuemNcNcTFrCvK1f+A==
+
+react-hook-form@^4.9.3:
+  version "4.9.3"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-4.9.3.tgz#7794a323de2f92e4685f3581b2ea3e52955d14d8"
+  integrity sha512-TPjOl5Hyq1O8VFBxxz9lnbuP/KreJD07GRUI2G8K/JnWy0pln/QaZ/p1fsnJ+8BAwQQB2fhEXSR5XrX2mxYBtw==
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.12.0"

@@ -1,7 +1,6 @@
 import React from "react";
 import { NestDataObject } from "react-hook-form";
-import { signInInitialState } from "../../constants/types";
-import "./style.scss";
+import { signInInitialState, signUpInitialState } from "../../constants/types";
 
 export const FormErrors: React.FC<NestDataObject<
   signInInitialState
@@ -38,8 +37,13 @@ export const FormErrors: React.FC<NestDataObject<
   if (errors.firebase) {
     switch (errors.firebase.type) {
       case "auth/wrong-password":
-      case "auth/user-not-found":
         errorMessageFirebase = "Wrong email or password";
+        break;
+      case "auth/user-not-found":
+        errorMessageFirebase = "No account linked to this email";
+        break;
+      case "auth/email-already-in-use":
+        errorMessageFirebase = "Email already used";
         break;
       case "auth/user-disabled":
         errorMessageFirebase = "You have been banned";
@@ -52,11 +56,21 @@ export const FormErrors: React.FC<NestDataObject<
     }
   }
   const returnMessage = (
-    <div className="error-wrapper">
+    <div>
       {errorMessageEmail && <p>{errorMessageEmail}</p>}
       {errorMessagePassword && <p>{errorMessagePassword}</p>}
       {errorMessageFirebase && <p>{errorMessageFirebase}</p>}
     </div>
   );
   return returnMessage;
+};
+
+export const FormErrorsPassConfirm: React.FC<NestDataObject<
+  signUpInitialState
+>> = errors => {
+  let errorMessageConfirm = "";
+  if (errors.passwordConfirm) {
+    errorMessageConfirm = "Password does not match";
+  }
+  return <p>{errorMessageConfirm}</p>;
 };

@@ -49,7 +49,7 @@ const SignInFormBase: React.FC<signInFormProps> = props => {
       props.history.push(ROUTES.HOME);
     } catch (err) {
       setLoading(false);
-      console.log(err);
+      console.error(err);
     }
   };
   const isInvalid = !!errors.email || !!errors.password || !!errors.firebase;
@@ -60,7 +60,7 @@ const SignInFormBase: React.FC<signInFormProps> = props => {
         <input
           name="email"
           ref={register({ required: true, pattern: emailRegExp })}
-          type="text"
+          type="email"
           placeholder="Email Address"
           onChange={() => clearError("firebase")}
         />
@@ -71,11 +71,11 @@ const SignInFormBase: React.FC<signInFormProps> = props => {
           placeholder="Password"
           onChange={() => clearError("firebase")}
         />
-        {isInvalid && FormErrors(errors)}
+        <div className="error-wrapper">{isInvalid && FormErrors(errors)}</div>
         <button disabled={isInvalid || loading} type="submit">
           {loading ? <Spinner /> : "Sign In"}
         </button>
-        <button disabled={loading} onClick={signInWithGoogle}>
+        <button disabled={loading} onClick={signInWithGoogle} type="button">
           {loading ? <Spinner /> : <i className="fab fa-google"></i>}
         </button>
         <PasswordForgetLink />

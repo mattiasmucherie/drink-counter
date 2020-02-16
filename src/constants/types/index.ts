@@ -5,6 +5,7 @@ export type signUpInitialState = {
   email: string;
   password: string;
   passwordConfirm: string;
+  firebase?: FieldError;
 };
 
 export type signInInitialState = {
@@ -15,6 +16,7 @@ export type signInInitialState = {
 
 export type PasswordForgetInitialState = {
   email: string;
+  firebase?: FieldError;
 };
 
 export type PasswordUpdateInitialState = {

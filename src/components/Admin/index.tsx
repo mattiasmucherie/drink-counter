@@ -22,7 +22,7 @@ const AdminPage: React.FC<adminPageProps> = props => {
           });
           setUsers(usersReact);
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
       }
     };

@@ -12,18 +12,35 @@ const config = {
   appId: process.env.REACT_APP_APP_ID,
   measurementID: process.env.REACT_APP_MEASUREMENT_ID
 };
+
 class Firebase {
   auth: app.auth.Auth;
   db: app.firestore.Firestore;
+  provider: app.auth.GoogleAuthProvider;
   constructor() {
     app.initializeApp(config);
     this.auth = app.auth();
     this.db = app.firestore();
+    this.provider = new app.auth.GoogleAuthProvider();
   }
   doCreateUserWithEmailAndPassword = (email: string, password: string) =>
     this.auth.createUserWithEmailAndPassword(email, password);
   doSignInWithEmailAndPassword = (email: string, password: string) =>
     this.auth.signInWithEmailAndPassword(email, password);
+  doSignInWithGoogle = async () => {
+    try {
+      const userCredential: any = await app
+        .auth()
+        .signInWithPopup(this.provider);
+      if (userCredential.additionalUserInfo.isNewUser && userCredential.user) {
+        const { name, email } = userCredential.additionalUserInfo.profile;
+        await this.user(userCredential.user.uid).set({ username: name, email });
+      }
+    } catch (err) {
+      this.user("errorlog").set({ error: err.message });
+      console.log(err);
+    }
+  };
   doSignOut = () => this.auth.signOut();
   doPasswordReset = (email: string) => this.auth.sendPasswordResetEmail(email);
   doPasswordUpdate = (password: string) =>

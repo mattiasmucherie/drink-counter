@@ -1,0 +1,44 @@
+$base-color: #fff;
+.simple-spinner {
+  height: 20px;
+  width: 20px;
+  border: 3px solid $base-color;
+  border-radius: 20%;
+  animation: rotate 1.5s 0s infinite linear reverse;
+  margin: auto;
+}
+.simple-spinner::after {
+  content: "";
+  width: 50%;
+  height: 50%;
+  display: block;
+  background-color: $base-color;
+  border-radius: 50%;
+  animation: bounce 1.5s 0s infinite linear normal;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translate(50%, 0) scale(1);
+  }
+  25% {
+    transform: translate(112%, 50%) scale(0.75);
+  }
+  50% {
+    transform: translate(50%, 125%) scale(0.5);
+  }
+  75% {
+    transform: translate(-12%, 50%) scale(0.75);
+  }
+  100% {
+    transform: translate(50%, 0) scale(1);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

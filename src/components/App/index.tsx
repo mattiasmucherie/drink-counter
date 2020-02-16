@@ -9,17 +9,12 @@ import PasswordForget from "../PasswordForget";
 import Home from "../Home";
 import Account from "../Account";
 import Admin from "../Admin";
-import Firebase from "../Firebase";
 import { withAuthentication } from "../Session";
 
-interface AppProps {
-  firebase: Firebase | null;
-}
-const App: React.FC<AppProps> = props => {
+const App: React.FC = () => {
   return (
     <Router>
       <Navigation />
-      <hr />
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_IN} component={SignIn} />
       <Route path={ROUTES.SIGN_UP} component={SignUp} />

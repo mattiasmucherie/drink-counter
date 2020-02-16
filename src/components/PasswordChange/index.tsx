@@ -26,24 +26,27 @@ const PasswordUpdate: React.FC<PasswordUpdateProps> = props => {
   });
   const isInvalid = !!errors.password;
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        name="password"
-        ref={register}
-        type="password"
-        placeholder="Password"
-      />
-      <input
-        name="passwordConfirm"
-        ref={register({ validate: value => value === watch("password") })}
-        type="password"
-        placeholder="Confirm Password"
-      />
-      {isInvalid && "Something was not correct"}
-      <button disabled={isInvalid} type="submit">
-        Sign Up
-      </button>
-    </form>
+    <div className="form-wrapper">
+      <form onSubmit={onSubmit}>
+        <h2>Update Password</h2>
+        <input
+          name="password"
+          ref={register}
+          type="password"
+          placeholder="Password"
+        />
+        <input
+          name="passwordConfirm"
+          ref={register({ validate: value => value === watch("password") })}
+          type="password"
+          placeholder="Confirm Password"
+        />
+        {isInvalid && "Something was not correct"}
+        <button disabled={isInvalid} type="submit">
+          Update Password
+        </button>
+      </form>
+    </div>
   );
 };
 

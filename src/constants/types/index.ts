@@ -1,3 +1,5 @@
+import { FieldError } from "react-hook-form";
+
 export type signUpInitialState = {
   username: string;
   email: string;
@@ -8,6 +10,7 @@ export type signUpInitialState = {
 export type signInInitialState = {
   email: string;
   password: string;
+  firebase?: FieldError;
 };
 
 export type PasswordForgetInitialState = {

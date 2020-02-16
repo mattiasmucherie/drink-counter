@@ -4,13 +4,10 @@ import * as ROUTES from "../../constants/routes";
 import { useForm } from "react-hook-form";
 import { signUpInitialState } from "../../constants/types";
 import Firebase, { withFirebase } from "../Firebase";
+import "../../style/formStyle.scss";
+import "./style.scss";
 
-const SignUp = () => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
-  </div>
-);
+const SignUp = () => <SignUpForm />;
 interface signUpFormProps extends RouteComponentProps {
   firebase: Firebase | null;
 }
@@ -41,40 +38,43 @@ const SignUpFormBase: React.FC<signUpFormProps> = props => {
     !!errors.password ||
     !!errors.passwordConfirm;
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        name="username"
-        ref={register}
-        type="text"
-        placeholder="Full Name"
-      />
-      <input
-        name="email"
-        ref={register}
-        type="email"
-        placeholder="Email Address"
-      />
-      <input
-        name="password"
-        ref={register}
-        type="password"
-        placeholder="Password"
-      />
-      <input
-        name="passwordConfirm"
-        ref={register({ validate: value => value === watch("password") })}
-        type="password"
-        placeholder="Confirm Password"
-      />
-      {isInvalid && "Something was not correct"}
-      <button disabled={isInvalid} type="submit">
-        Sign Up
-      </button>
-    </form>
+    <div className="form-wrapper">
+      <form onSubmit={onSubmit}>
+        <h2>Register</h2>
+        <input
+          name="username"
+          ref={register}
+          type="text"
+          placeholder="Your name"
+        />
+        <input
+          name="email"
+          ref={register}
+          type="email"
+          placeholder="Email Address"
+        />
+        <input
+          name="password"
+          ref={register}
+          type="password"
+          placeholder="Password"
+        />
+        <input
+          name="passwordConfirm"
+          ref={register({ validate: value => value === watch("password") })}
+          type="password"
+          placeholder="Confirm Password"
+        />
+        {isInvalid && "Something was not correct"}
+        <button disabled={isInvalid} type="submit">
+          Sign Up
+        </button>
+      </form>
+    </div>
   );
 };
 const SignUpLink = () => (
-  <p>
+  <p className="sign-up-link">
     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </p>
 );

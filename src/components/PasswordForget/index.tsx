@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { PasswordForgetInitialState } from "../../constants/types";
 import Firebase, { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
+import "../../style/formStyle.scss";
+import "./style.scss";
 
 const PasswordForget = () => (
   <div>
@@ -32,23 +34,26 @@ const PasswordForgetFormBase: React.FC<PasswordForgetFormProps> = props => {
   });
   const isInvalid = !!errors.email;
   return (
-    <form onSubmit={onSubmit}>
-      <input
-        name="email"
-        ref={register}
-        type="email"
-        placeholder="Email Address"
-      />
-      {isInvalid && "Something was not correct"}
-      <button disabled={isInvalid} type="submit">
-        Reset My password
-      </button>
-    </form>
+    <div className="form-wrapper">
+      <form onSubmit={onSubmit}>
+        <h2>Reset password</h2>
+        <input
+          name="email"
+          ref={register}
+          type="email"
+          placeholder="Email Address"
+        />
+        {isInvalid && "Something was not correct"}
+        <button disabled={isInvalid} type="submit">
+          Reset My password
+        </button>
+      </form>
+    </div>
   );
 };
 
 const PasswordForgetLink = () => (
-  <p>
+  <p className="password-forget-link">
     <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
   </p>
 );

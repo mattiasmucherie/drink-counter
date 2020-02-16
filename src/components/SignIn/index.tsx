@@ -37,6 +37,7 @@ const SignInFormBase: React.FC<signInFormProps> = props => {
         .catch((err: FirebaseError) => {
           setError("firebase", err.code, err.message);
           setLoading(false);
+          console.error(err);
         });
     }
   });

@@ -37,8 +37,8 @@ class Firebase {
         await this.user(userCredential.user.uid).set({ username: name, email });
       }
     } catch (err) {
-      this.user("errorlog").set({ error: err.message });
-      console.log(err);
+      // this.user("errorlog").set({ error: err.message });
+      console.error(err);
     }
   };
   doSignOut = () => this.auth.signOut();

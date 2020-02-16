@@ -28,7 +28,7 @@ const SignUpFormBase: React.FC<signUpFormProps> = props => {
         }
         props.history.push(ROUTES.HOME);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
   });

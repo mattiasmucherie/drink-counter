@@ -1,74 +1,59 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import SignOutButton from "../SignOut";
-import { AuthUserContext } from "../Session";
 import "./style.scss";
-const Navigation = () => (
-  <AuthUserContext.Consumer>
-    {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
-  </AuthUserContext.Consumer>
-);
+import { User } from "firebase";
+
+const Navigation: React.FC<{
+  authUser: User | null;
+  loading: boolean;
+}> = props => {
+  return props.authUser ? <NavigationAuth /> : <NavigationNonAuth />;
+};
 
 const NavigationAuth = () => {
-  const [expanded, setExpanded] = useState(false);
-  const burgerClick = () => {
-    setExpanded(!expanded);
-  };
-  const closeExpanded = () => {
-    setExpanded(false);
-  };
   return (
     <nav className="navbar">
       <NavLink to={ROUTES.LANDING} exact className="logo">
         <span role="img" aria-label="Beer">
-          🍺
+          Drink Counter
         </span>
       </NavLink>
-      <span className="navbar-toggle" onClick={burgerClick}>
-        <i className="fas fa-bars"></i>
-      </span>
-      <ul className={`main-nav ${expanded ? "expanded" : ""}`}>
+
+      <ul className={`main-nav `}>
         <li>
-          <NavLink
-            to={ROUTES.HOME}
-            className="nav-links"
-            onClick={closeExpanded}
-          >
-            Home
+          <NavLink to={ROUTES.HOME} className="nav-links">
+            <i className="fas fa-home"></i>
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to={ROUTES.ACCOUNT}
-            className="nav-links"
-            onClick={closeExpanded}
-          >
-            Account
+          <NavLink to={ROUTES.ACCOUNT} className="nav-links">
+            <i className="fas fa-user-circle"></i>
           </NavLink>
         </li>
         <li>
           <SignOutButton />
         </li>
       </ul>
-      {expanded && <hr />}
     </nav>
   );
 };
 const NavigationNonAuth = () => {
   return (
     <nav className="navbar">
-      <div className="main-nav-non-auth">
-        <NavLink to={ROUTES.LANDING} className="logo">
-          <span role="img" aria-label="Beer">
-            🍺
-          </span>
-        </NavLink>
-
-        <NavLink to={ROUTES.SIGN_IN} className="sign-in">
-          Sign In
-        </NavLink>
-      </div>
+      <NavLink to={ROUTES.LANDING} className="logo">
+        <span role="img" aria-label="Beer">
+          Drink Counter
+        </span>
+      </NavLink>
+      <ul className="main-nav">
+        <li>
+          <NavLink to={ROUTES.SIGN_IN} className="nav-links">
+            <i className="fas fa-sign-in-alt"></i>
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   );
 };

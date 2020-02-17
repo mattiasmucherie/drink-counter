@@ -1,20 +1,36 @@
+@import "./../../style/colors.scss";
 $base-color: #fff;
+
 .simple-spinner {
   height: 20px;
   width: 20px;
+  max-height: 60px;
+  max-width: 60px;
   border: 3px solid $base-color;
-  border-radius: 20%;
+  border-radius: 30%;
   animation: rotate 1.5s 0s infinite linear reverse;
   margin: auto;
-}
-.simple-spinner::after {
-  content: "";
-  width: 50%;
-  height: 50%;
-  display: block;
-  background-color: $base-color;
-  border-radius: 50%;
-  animation: bounce 1.5s 0s infinite linear normal;
+  &::after {
+    content: "";
+    width: 50%;
+    height: 50%;
+    display: block;
+    background-color: $base-color;
+    border-radius: 50%;
+    animation: bounce 1.5s 0s infinite linear normal;
+  }
+  &.dark {
+    border: 3px solid $color-dark-blue;
+
+    &::after {
+      background-color: $color-dark-blue;
+    }
+  }
+  &.large {
+    height: 100vw;
+    width: 100vw;
+    border-width: 6px;
+  }
 }
 
 @keyframes bounce {

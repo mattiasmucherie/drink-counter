@@ -1,6 +1,6 @@
 import React from "react";
 import Firebase, { withFirebase } from "../Firebase";
-import "./style.scss";
+
 interface signOutFormProps {
   firebase: Firebase | null;
 }
@@ -11,7 +11,7 @@ const SignOutButton: React.FC<signOutFormProps> = props => {
       type="button"
       onClick={props.firebase?.doSignOut}
     >
-      Sign Out
+      <i className="fas fa-sign-out-alt"></i>
     </button>
   );
 };

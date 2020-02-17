@@ -9,22 +9,34 @@ import PasswordForget from "../PasswordForget";
 import Home from "../Home";
 import Account from "../Account";
 import Admin from "../Admin";
-import { withAuthentication } from "../Session";
+import { withAuthentication, AuthUserContext } from "../Session";
+import { Spinner } from "../spinner/spinner";
+import "./style.scss";
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Navigation />
-      <Switch>
-        <Route exact path={ROUTES.LANDING} component={LandingPage} />
-        <Route path={ROUTES.SIGN_IN} component={SignIn} />
-        <Route path={ROUTES.SIGN_UP} component={SignUp} />
-        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-        <Route path={ROUTES.HOME} component={Home} />
-        <Route path={ROUTES.ACCOUNT} component={Account} />
-        <Route path={ROUTES.ADMIN} component={Admin} />
-      </Switch>
-    </Router>
+    <AuthUserContext.Consumer>
+      {props =>
+        props.loading ? (
+          <div className="spinner-wrapper">
+            <Spinner color="dark large" />
+          </div>
+        ) : (
+          <Router>
+            <Navigation {...props} />
+            <Switch>
+              <Route exact path={ROUTES.LANDING} component={LandingPage} />
+              <Route path={ROUTES.SIGN_IN} component={SignIn} />
+              <Route path={ROUTES.SIGN_UP} component={SignUp} />
+              <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
+              <Route path={ROUTES.HOME} component={Home} />
+              <Route path={ROUTES.ACCOUNT} component={Account} />
+              <Route path={ROUTES.ADMIN} component={Admin} />
+            </Switch>
+          </Router>
+        )
+      }
+    </AuthUserContext.Consumer>
   );
 };
 

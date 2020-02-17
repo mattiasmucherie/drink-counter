@@ -1,17 +1,20 @@
+@import "./colors.scss";
 .form-wrapper {
   margin: 0px 20px;
   form {
     display: flex;
     flex-direction: column;
     margin: 20px auto;
-    background: hsla(195, 63%, 97%, 0.906);
+    background: $color-gray;
     border-radius: 10px;
     max-width: 400px;
     min-width: 190px;
     justify-content: center;
+    box-shadow: 3px 3px 6px 3px #00000000, -3px -3px 3px 3px #00000000,
+      3px 3px 5px 2px #4444441a, -3px -3px 7px 2px #ffffffb3;
     .error-wrapper {
       font-size: 12px;
-      color: #ee6352;
+      color: $color-error;
       margin: 5px 0px 0px 25px;
     }
     input {
@@ -22,8 +25,8 @@
       font-family: inherit;
       padding: 10px 25px;
       border-radius: 25px;
-      background: hsla(195, 100%, 96%, 0.9);
-      box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, 0),
+      background: $color-gray;
+      box-shadow: 3px 3px 6px 3px #00000000,
         -3px -3px 3px 3px hsla(0, 0%, 100%, 0),
         3px 3px 5px 2px rgba(68, 68, 68, 0.1) inset,
         -3px -3px 7px 2px rgba(255, 255, 255, 0.7) inset;
@@ -33,11 +36,11 @@
     }
     h2 {
       margin: 10px 25px 5px 25px;
-      color: #3b5491;
+      color: $color-title-blue;
     }
     button {
       color: white;
-      background: linear-gradient(150deg, #829fe3, #253c78);
+      background: linear-gradient(150deg, $color-blue, $color-dark-blue);
       margin: 10px 20px;
       padding: 10px;
       border-radius: 25px;

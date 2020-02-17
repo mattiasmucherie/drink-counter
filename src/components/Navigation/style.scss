@@ -1,3 +1,5 @@
+@import "../../style/colors.scss";
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -8,80 +10,64 @@
 }
 .navbar {
   font-size: 18px;
-  padding: 10px;
+  padding: 5px;
   margin: 0;
-}
-.logo {
-  display: inline-block;
-  font-size: 22px;
-  margin-left: 20px;
-}
-.main-nav {
-  list-style-type: none;
-  display: none;
-}
-.main-nav li {
-  text-align: center;
-  margin: 25px auto;
-}
-.expanded {
-  display: block;
-}
-.navbar-toggle {
-  position: absolute;
-  top: 22.5px;
-  right: 20px;
-  cursor: pointer;
-  color: #010101;
-  font-size: 24px;
-}
-.sign-in {
-  padding-right: 20px;
-}
-.nav-links,
-.logo {
-  text-decoration: none;
-  color: hsl(0, 0%, 50%);
-  padding: 10px;
-  &:hover {
-    color: hsl(0, 0%, 10%);
-  }
-}
-.main-nav-non-auth {
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.sign-in {
-  text-decoration: none;
-  color: hsl(0, 0%, 50%);
-}
-.active {
-  color: hsl(0, 0%, 10%);
+  box-shadow: 0px 3px 5px 2px #00000014;
+  .logo {
+    display: inline-block;
+    font-size: 20px;
+    color: $color-dark-blue;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bolder;
+    justify-content: flex-start;
+  }
+  .main-nav {
+    list-style-type: none;
+    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    .nav-links {
+      text-decoration: none;
+      color: $color-dark-gray;
+      &.active {
+        color: $color-blue;
+      }
+      &:hover {
+        color: $color-gray-text;
+      }
+    }
+    li {
+      text-align: center;
+      margin: 0px 5px;
+      padding: 5px;
+    }
+    .btn-sign-out {
+      text-decoration: none;
+      color: $color-dark-gray;
+      background: none;
+      border: none;
+      padding: 0px;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+      &:hover {
+        color: $color-gray-text;
+      }
+    }
+  }
 }
 @media screen and (min-width: 768px) {
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .main-nav {
-    display: flex;
-    margin-right: 30px;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-  .main-nav-non-auth {
-    width: 100vw;
-  }
-  .main-nav li {
-    margin: 0px 20px;
-  }
-
-  .logo {
-    justify-content: flex-start;
-  }
-  .navbar-toggle {
-    display: none;
+    padding: 10px;
+    .logo {
+      margin-left: 5px;
+      font-size: 24px;
+    }
   }
 }

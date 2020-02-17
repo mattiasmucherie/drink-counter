@@ -1,7 +1,9 @@
+@import "../../style/colors.scss";
 .password-forget-link {
   margin: 5px 25px;
+  padding: 10px 0px;
   a {
     text-decoration: none;
-    color: #5772b1;
+    color: $color-link-blue;
   }
 }

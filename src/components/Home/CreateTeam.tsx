@@ -18,25 +18,31 @@ const CreateTeam: React.FC<CreateTeamProps> = props => {
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, control } = useForm<createTeamInitialState>({
     defaultValues: {
-      users: [{ name: "" }]
+      usersEmail: [{ name: "" }]
     }
   });
-  const { fields, append, remove } = useFieldArray({ control, name: "users" });
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "usersEmail"
+  });
   window.onclick = function(event: any) {
     const modal = document.getElementById("create-team-modal");
     if (event.target === modal && modal) {
       setExpand(false);
     }
   };
-  const onSubmit = handleSubmit(async data => {
-    const users = data.users.map(user => user.name);
+  const onSubmit = handleSubmit(async (data: createTeamInitialState) => {
+    const usersEmail = data.usersEmail.map(user => user.name);
+    const email = props.authUser.email || "";
     const body: TeamFirebase = {
       name: data.teamName,
       owner: props.authUser.displayName || "",
       ownerId: props.authUser.uid,
-      users,
-      created: props.firebase.timestamp()
+      usersEmail: [...usersEmail, email],
+      created: props.firebase.timestamp(),
+      users: [props.authUser.uid]
     };
+    console.log(body);
     try {
       setLoading(true);
       const newTeamRef = props.firebase.db.collection("teams").doc();
@@ -70,7 +76,7 @@ const CreateTeam: React.FC<CreateTeamProps> = props => {
                   return (
                     <li key={item.id}>
                       <input
-                        name={`users[${index}].name`}
+                        name={`usersEmail[${index}].name`}
                         defaultValue={`${item.name}`}
                         ref={register({})}
                         type="email"

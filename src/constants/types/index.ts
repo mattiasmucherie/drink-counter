@@ -9,7 +9,7 @@ export type signUpInitialState = {
 };
 export type createTeamInitialState = {
   teamName: string;
-  users: { name: string }[];
+  usersEmail: { name: string }[];
 };
 
 export type signInInitialState = {
@@ -38,6 +38,7 @@ export type TeamFirebase = {
   name: string;
   owner: string;
   ownerId: string;
-  users: string[];
+  usersEmail: string[];
   created?: any;
+  users?: string[];
 };

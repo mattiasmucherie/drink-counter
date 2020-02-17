@@ -1,0 +1,52 @@
+@import "../../style/colors.scss";
+
+.home-wrapper {
+  margin: 20px;
+  text-align: center;
+  .info-text {
+    margin: 10px;
+  }
+  .card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .card {
+      width: 100%;
+      max-width: 300px;
+      min-width: 200px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 3px 3px 6px 3px #00000000, -3px -3px 3px 3px #00000000,
+        3px 3px 5px 2px #4444441a, -3px -3px 7px 2px #ffffffb3;
+      .title {
+        padding: 10px 0 0 10px;
+        text-align: left;
+      }
+      .total {
+        font-size: 32px;
+      }
+      .link-to-team {
+        margin: 0 10px 15px 0;
+        text-align: right;
+        a {
+          color: $color-link-blue;
+          margin: 10px;
+          padding: 5px;
+          text-decoration: none;
+          box-shadow: 3px 3px 6px 3px #00000000, -3px -3px 3px 3px #00000000,
+            3px 3px 5px 2px #4444441a, -3px -3px 7px 2px #ffffffb3;
+          border-radius: 5px;
+          &:visited {
+            color: $color-link-blue;
+          }
+          &:hover,
+          &:focus,
+          &:active {
+            box-shadow: 3px 3px 6px 3px #00000000, -3px -3px 3px 3px #00000000,
+              3px 3px 5px 2px #4444441a inset, -3px -3px 7px 2px #ffffffb3 inset;
+          }
+        }
+      }
+    }
+  }
+}

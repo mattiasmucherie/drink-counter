@@ -51,4 +51,4 @@ const condition = (authUser: firebase.User | null): boolean => {
     return true;
   return false;
 };
-export default withFirebase(withAuthorization(condition)(AdminPage));
+export default withAuthorization(condition)(withFirebase(AdminPage));

@@ -12,6 +12,7 @@ import Admin from "../Admin";
 import { withAuthentication, AuthUserContext } from "../Session";
 import { Spinner } from "../spinner/spinner";
 import "./style.scss";
+import Team from "../Team";
 
 const App: React.FC = () => {
   return (
@@ -29,9 +30,10 @@ const App: React.FC = () => {
               <Route path={ROUTES.SIGN_IN} component={SignIn} />
               <Route path={ROUTES.SIGN_UP} component={SignUp} />
               <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-              <Route path={ROUTES.HOME} component={Home} />
+              <Route path={ROUTES.HOME} component={Home} {...props} />
               <Route path={ROUTES.ACCOUNT} component={Account} />
               <Route path={ROUTES.ADMIN} component={Admin} />
+              <Route path={ROUTES.TEAM_WITH_ID} component={Team} />
             </Switch>
           </Router>
         )

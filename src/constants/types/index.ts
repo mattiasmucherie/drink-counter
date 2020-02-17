@@ -1,4 +1,4 @@
-import { FieldError } from "react-hook-form";
+import { FieldError, FieldValue } from "react-hook-form";
 
 export type signUpInitialState = {
   username: string;
@@ -6,6 +6,10 @@ export type signUpInitialState = {
   password: string;
   passwordConfirm: string;
   firebase?: FieldError;
+};
+export type createTeamInitialState = {
+  teamName: string;
+  users: { name: string }[];
 };
 
 export type signInInitialState = {
@@ -22,4 +26,18 @@ export type PasswordForgetInitialState = {
 export type PasswordUpdateInitialState = {
   password: string;
   passwordConfirm: string;
+};
+
+export type Team = TeamFirebase & {
+  id: string;
+  total: number;
+  timestamp?: { seconds: number; nanoseconds: number };
+};
+
+export type TeamFirebase = {
+  name: string;
+  owner: string;
+  ownerId: string;
+  users: string[];
+  created?: any;
 };

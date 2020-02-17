@@ -1,0 +1,46 @@
+@import "../../style/colors.scss";
+.create-team-wrapper {
+  width: 100%;
+  max-width: 300px;
+  min-width: 200px;
+  margin: 10px;
+  .btn-create-team {
+    width: 100%;
+    color: white;
+    background: linear-gradient(150deg, $color-blue, $color-dark-blue);
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    &:disabled {
+      filter: grayscale(100%);
+      cursor: not-allowed;
+    }
+  }
+  .modal {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.2); /* Black w/ opacity */
+    &.open {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-container {
+      background-color: $color-gray;
+      padding: 0;
+      border-radius: 10px;
+      width: 90vw;
+      max-width: 400px;
+    }
+  }
+}

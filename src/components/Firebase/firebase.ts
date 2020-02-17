@@ -46,5 +46,6 @@ class Firebase {
     this.auth.currentUser?.updatePassword(password);
   user = (uid: string) => this.db.collection("users").doc(uid);
   users = () => this.db.collection("users");
+  timestamp = () => app.firestore.FieldValue.serverTimestamp();
 }
 export default Firebase;

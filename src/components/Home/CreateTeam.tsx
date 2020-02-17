@@ -63,7 +63,7 @@ const CreateTeam: React.FC<CreateTeamProps> = props => {
                 type="text"
                 name="teamName"
                 ref={register({ required: true })}
-                placeholder="Team name"
+                placeholder="Team name 🍺"
               />
               <ul>
                 {fields.map((item, index) => {

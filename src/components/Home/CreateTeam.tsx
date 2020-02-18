@@ -31,6 +31,13 @@ const CreateTeam: React.FC<CreateTeamProps> = props => {
       setExpand(false);
     }
   };
+  const closeModal = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      setExpand(false);
+    }
+  };
+  document.addEventListener("keydown", event => closeModal(event));
+
   const onSubmit = handleSubmit(async (data: createTeamInitialState) => {
     const usersEmail = data.usersEmail.map(user => user.name);
     const email = props.authUser.email || "";
@@ -42,7 +49,6 @@ const CreateTeam: React.FC<CreateTeamProps> = props => {
       created: props.firebase.timestamp(),
       users: [props.authUser.uid]
     };
-    console.log(body);
     try {
       setLoading(true);
       const newTeamRef = props.firebase.db.collection("teams").doc();

@@ -13,7 +13,6 @@ export const newTeam = functions.firestore
       try {
         const usersDB: { email: string; username: string; uid: string }[] = [];
         const usersReq = await db.collection("users").get();
-        console.log("ARE WE WAITING?");
         usersReq.forEach(doc => {
           const docData = doc.data();
           usersDB.push({
@@ -21,18 +20,13 @@ export const newTeam = functions.firestore
             username: docData.username,
             uid: doc.id
           });
-          console.log(usersDB);
         });
-        console.log(usersDB);
-
         data.usersEmail.forEach((email: string) => {
           const user = usersDB.find(u => u.email === email);
           if (user) {
             usersUID = [...usersUID, user.uid];
           }
-          console.log("NO WE ARE NOT!");
         });
-        console.log(usersUID);
         await snap.ref.update({ total: 0, users: usersUID });
       } catch (err) {
         console.log(err);

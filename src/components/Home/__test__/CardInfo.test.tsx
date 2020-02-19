@@ -22,7 +22,11 @@ describe("Mounting Component", () => {
   it("renders without crashing", () => {
     const card = getByTestId("card-info-team-card");
     const link = getByTestId("card-info-link");
+    const title = getByTestId("card-info-title");
+    const total = getByTestId("card-info-total");
     expect(link.closest("a")).toHaveAttribute("href", "/team/Team-ID");
     expect(card).toBeInTheDocument();
+    expect(title).toBeInTheDocument();
+    expect(total).toBeInTheDocument();
   });
 });

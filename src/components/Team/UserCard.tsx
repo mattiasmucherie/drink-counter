@@ -91,6 +91,7 @@ const UserCard: React.FC<UserCardProps> = props => {
     const modal = document.getElementById(`user-card-modal-${props.userId}`);
     if (event.target === modal && modal) {
       setExpand(false);
+      setExpandLog(false);
     }
   };
   return (

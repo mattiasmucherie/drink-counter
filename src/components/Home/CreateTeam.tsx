@@ -48,11 +48,20 @@ const CreateTeam: React.FC<CreateTeamProps> = props => {
     };
     try {
       setLoading(true);
-      const newTeamRef = props.firebase.db.collection("teams").doc();
-      await newTeamRef.set(body);
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      const requestOptions: RequestInit = {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify(body)
+      };
+      await fetch(
+        "https://europe-west1-drink-counter-f8e16.cloudfunctions.net/createTeam",
+        requestOptions
+      );
+
       setLoading(false);
       setExpand(false);
-      props.history.push(`/team/${newTeamRef.id}`);
     } catch (err) {
       setLoading(false);
       console.error(err);

@@ -43,11 +43,8 @@ const CreateTeam: React.FC<CreateTeamProps> = props => {
     const email = props.authUser.email || "";
     const body: TeamFirebase = {
       name: data.teamName,
-      owner: props.authUser.displayName || "",
-      ownerId: props.authUser.uid,
-      usersEmail: [...usersEmail, email],
-      created: props.firebase.timestamp(),
-      users: [props.authUser.uid]
+      owner: props.authUser.uid,
+      usersEmail: [...usersEmail, email]
     };
     try {
       setLoading(true);

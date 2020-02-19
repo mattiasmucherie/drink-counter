@@ -37,7 +37,6 @@ export type Team = TeamFirebase & {
 export type TeamFirebase = {
   name: string;
   owner: string;
-  ownerId: string;
   usersEmail: string[];
   created?: any;
   users?: string[];

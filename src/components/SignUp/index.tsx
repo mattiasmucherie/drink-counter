@@ -34,7 +34,9 @@ const SignUpFormBase: React.FC<signUpFormProps> = props => {
           password
         );
         if (authUser.user) {
-          await props.firebase.user(authUser.user.uid).set({ username, email });
+          await props.firebase
+            .user(authUser.user.uid)
+            .set({ username, email, uid: authUser.user.uid });
         }
         setLoading(false);
         props.history.push(ROUTES.HOME);

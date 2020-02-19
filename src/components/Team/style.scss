@@ -1,0 +1,18 @@
+@import "../../style/colors.scss";
+.team-container {
+  padding: 0 20px;
+  .team-wrapper {
+    text-align: center;
+    margin: 20px auto;
+    box-shadow: 3px 3px 6px 3px #00000000, -3px -3px 3px 3px #00000000,
+      3px 3px 5px 2px #4444441a, -3px -3px 7px 2px #ffffffb3;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 500px;
+    .team-name {
+      color: $color-blue;
+      margin: 5px auto 20px auto;
+      overflow-wrap: break-word;
+    }
+  }
+}

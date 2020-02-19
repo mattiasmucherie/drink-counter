@@ -11,19 +11,23 @@ interface WithAuthorizationProps extends RouteComponentProps {
 const withAuthorization = (
   condition: (authUser: firebase.User | null) => boolean
 ) => (Component: any) => {
-  const WithAuthorization: React.FC<WithAuthorizationProps> = props => {
+  const WithAuthorization: React.FC<WithAuthorizationProps> = propsAuth => {
     useEffect(() => {
-      if (props.firebase)
-        props.firebase.auth.onAuthStateChanged(authUser => {
+      if (propsAuth.firebase)
+        propsAuth.firebase.auth.onAuthStateChanged(authUser => {
           if (!condition(authUser)) {
-            props.history.push(ROUTES.SIGN_IN);
+            propsAuth.history.push(ROUTES.SIGN_IN);
           }
         });
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
       <AuthUserContext.Consumer>
-        {props => (condition(props.authUser) ? <Component {...props} /> : null)}
+        {props =>
+          condition(props.authUser) ? (
+            <Component {...props} {...propsAuth} />
+          ) : null
+        }
       </AuthUserContext.Consumer>
     );
   };

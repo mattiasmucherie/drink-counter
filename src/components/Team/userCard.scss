@@ -1,0 +1,112 @@
+@import "../../style/colors.scss";
+.user-card-wrapper {
+  display: grid;
+  grid-template-columns: auto 40px 40px 40px;
+  margin: 20px 10px;
+  .user-card-display-name {
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .user-card-total {
+  }
+  .user-card-modal {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: #00000000;
+    &.open {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #00000033;
+      .modal-wrapper {
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 5vh;
+        background: $color-gray;
+        max-height: 80vh;
+        .modal-display-name {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+        .modal-tools-wrapper {
+          display: flex;
+          justify-content: center;
+          .modal-total {
+            font-size: 30px;
+            margin: 10px;
+            width: 40px;
+          }
+          button {
+            widows: 40px;
+            height: 40px;
+            box-shadow: 3px 3px 6px 3px #00000000, -3px -3px 3px 3px #00000000,
+              3px 3px 5px 2px #4444441a, -3px -3px 7px 2px #ffffffb3;
+            background: inherit;
+            margin: 10px 20px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            &:active,
+            &:focus {
+              box-shadow: 3px 3px 6px 3px #00000000, -3px -3px 3px 3px #00000000,
+                3px 3px 5px 2px #4444441a inset,
+                -3px -3px 7px 2px #ffffffb3 inset;
+              color: $color-strong-blue;
+            }
+          }
+        }
+        .modal-logs-btn-wrapper {
+          padding: 10px;
+          margin: 0px auto;
+          width: 40px;
+          text-align: center;
+          box-shadow: 3px 3px 6px 3px #00000000, -3px -3px 3px 3px #00000000,
+            3px 3px 5px 2px #4444441a, -3px -3px 7px 2px #ffffffb3;
+          border-radius: 10px;
+          cursor: pointer;
+          &.expand-log {
+            box-shadow: 3px 3px 6px 3px #00000000, -3px -3px 3px 3px #00000000,
+              3px 3px 5px 2px #4444441a inset, -3px -3px 7px 2px #ffffffb3 inset;
+            color: $color-strong-blue;
+          }
+        }
+        .modal-logs {
+          max-height: 50vh;
+          .modal-list-of-logs {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            max-height: 40vh;
+            .modal-log-wrapper {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;
+              .modal-log-amount {
+                &.neg {
+                  color: #bd9391;
+                }
+                &.pos {
+                  color: #94ae89;
+                }
+              }
+              .modal-log-time {
+                font-size: 11px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

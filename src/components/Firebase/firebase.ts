@@ -1,4 +1,4 @@
-import app from "firebase/app";
+import app, { firestore } from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
@@ -46,5 +46,9 @@ class Firebase {
     this.auth.currentUser?.updatePassword(password);
   user = (uid: string) => this.db.collection("users").doc(uid);
   users = () => this.db.collection("users");
+  incrementValue = (amount: number) => firestore.FieldValue.increment(amount);
+  addToArray = (log: any) => firestore.FieldValue.arrayUnion(log);
+  timestamp = () => firestore.Timestamp.fromDate(new Date());
+  timestampToDate = (timestamp: firestore.Timestamp) => timestamp.toDate();
 }
 export default Firebase;

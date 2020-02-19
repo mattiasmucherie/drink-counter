@@ -94,10 +94,10 @@
               justify-content: space-around;
               .modal-log-amount {
                 &.neg {
-                  color: #bd9391;
+                  color: $color-red;
                 }
                 &.pos {
-                  color: #94ae89;
+                  color: $color-green;
                 }
               }
               .modal-log-time {

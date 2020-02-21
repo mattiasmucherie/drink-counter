@@ -59,10 +59,9 @@ const UserCard: React.FC<UserCardProps> = props => {
   };
 
   window.onclick = function(event: any) {
-    const modal = document.getElementById(
-      `user-card-modal-${props.userDrinkInfo.id}`
-    );
-    if (event.target === modal && modal) {
+    const modal = document.getElementById(`user-card-modal`);
+    if (modal) console.log(event.target.id, modal.id);
+    if (modal && event.target.id === modal.id) {
       setExpand(false);
       setExpandLog(false);
     }
@@ -79,7 +78,7 @@ const UserCard: React.FC<UserCardProps> = props => {
           <div className="user-card-sober">103</div>
           <div
             className={`user-card-modal ${expand ? "open" : ""}`}
-            id={`user-card-modal-${props.userDrinkInfo.id}`}
+            id={`user-card-modal`}
           >
             <div className="modal-wrapper">
               <div className="modal-display-name">{displayName}</div>

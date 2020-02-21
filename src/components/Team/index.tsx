@@ -69,8 +69,6 @@ const Team: React.FC<TeamProps> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.firebase.db, props.match.params.id]);
 
-  console.log(team);
-
   let usersCards = <Spinner color="dark" />;
   if (team && !loading) {
     usersCards = (

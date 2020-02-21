@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import "../../style/formStyle.scss";
 import "./createTeam.scss";
-import { createTeamInitialState, TeamFirebase } from "../../constants/types";
+import { createTeamInitialState } from "../../constants/types";
 import Firebase from "../Firebase";
 import { User } from "firebase";
 import { Spinner } from "../spinner/spinner";
@@ -41,7 +41,7 @@ const CreateTeam: React.FC<CreateTeamProps> = props => {
   const onSubmit = handleSubmit(async (data: createTeamInitialState) => {
     const usersEmail = data.usersEmail.map(user => user.name);
     const email = props.authUser.email || "";
-    const body: TeamFirebase = {
+    const body = {
       name: data.teamName,
       owner: props.authUser.uid,
       usersEmail: [...usersEmail, email]

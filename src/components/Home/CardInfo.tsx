@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Team } from "../../constants/types";
+import { TeamType } from "../../constants/types";
 interface TeamProps {
-  team: Team;
+  team: TeamType;
 }
 const CardInfo: React.FC<TeamProps> = props => {
   return (

@@ -4,7 +4,7 @@ import Firebase, { withFirebase } from "../Firebase";
 import { User } from "firebase";
 import { Spinner } from "../spinner/spinner";
 import "./style.scss";
-import { Team } from "../../constants/types";
+import { TeamType } from "../../constants/types";
 import CardInfo from "./CardInfo";
 import CreateTeam from "./CreateTeam";
 interface HomeProps {
@@ -53,7 +53,7 @@ const Home: React.FC<HomeProps> = props => {
           <div className="card-wrapper">
             <CreateTeam firebase={props.firebase} authUser={props.authUser} />
             {teams.length &&
-              teams.map((team: Team) => {
+              teams.map((team: TeamType) => {
                 return <CardInfo key={team.id} team={team}></CardInfo>;
               })}
           </div>

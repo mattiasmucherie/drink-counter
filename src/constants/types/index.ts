@@ -28,16 +28,31 @@ export type PasswordUpdateInitialState = {
   passwordConfirm: string;
 };
 
-export type Team = TeamFirebase & {
+export type TeamType = TeamFirebase & {
   id: string;
   total: number;
-  timestamp?: { seconds: number; nanoseconds: number };
+  timestamp?: timestamp;
 };
-
+export type timestamp = {
+  seconds: number;
+  nanoseconds: number;
+};
 export type TeamFirebase = {
   name: string;
   owner: string;
-  usersEmail: string[];
-  created?: any;
-  users?: string[];
+  createdAt: firebase.firestore.Timestamp;
+  total: number;
+  users: string[];
+};
+
+export type userDrinkInfo = {
+  id: string;
+  logs: logType[];
+  total: number;
+};
+
+export type logType = {
+  amount: number;
+  createdAt: firebase.firestore.Timestamp;
+  createdBy: string;
 };

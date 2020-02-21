@@ -6,6 +6,8 @@ import Firebase, { withFirebase } from "../Firebase";
 import { Spinner } from "../spinner/spinner";
 import UserCard from "./UserCard";
 import "./style.scss";
+import { userDrinkInfo, TeamType } from "../../constants/types";
+import { sortOnTotal } from "../../utils/teamUtils";
 interface TeamProps extends RouteComponentProps {
   match: match<{ id: string }>;
   authUser: User;
@@ -13,9 +15,8 @@ interface TeamProps extends RouteComponentProps {
 }
 
 const Team: React.FC<TeamProps> = props => {
-  const [team, setTeam] = useState<firebase.firestore.DocumentData | undefined>(
-    undefined
-  );
+  const [team, setTeam] = useState<TeamType>();
+  const [userDrinkData, setUserDrinkData] = useState<userDrinkInfo[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -25,8 +26,7 @@ const Team: React.FC<TeamProps> = props => {
       .doc(props.match.params.id)
       .onSnapshot(
         snap => {
-          const data = snap.data();
-
+          const data: any = snap.data();
           setTeam(data);
           setLoading(false);
         },
@@ -39,9 +39,35 @@ const Team: React.FC<TeamProps> = props => {
       unsubscribe();
     };
   }, [props.firebase.db, props.match.params.id]);
-  const getTotal = (total: string) => {
-    console.log(total);
-  };
+
+  useEffect(() => {
+    const unsubscribe = props.firebase.db
+      .collection("teams")
+      .doc(props.match.params.id)
+      .collection("drinks")
+      .onSnapshot(
+        snap => {
+          const usersDrink: userDrinkInfo[] = [];
+          snap.forEach(doc => {
+            const data = doc.data();
+            const userDrink: userDrinkInfo = {
+              logs: data.logs,
+              total: data.total,
+              id: doc.id
+            };
+            usersDrink.push(userDrink);
+          });
+          setUserDrinkData(sortOnTotal(usersDrink));
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    return () => {
+      unsubscribe();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.firebase.db, props.match.params.id]);
 
   console.log(team);
 
@@ -50,22 +76,26 @@ const Team: React.FC<TeamProps> = props => {
     usersCards = (
       <div className="team-wrapper">
         <h2 className="team-name">{team.name}</h2>
-        {team.users.map((user: string) => {
+        {userDrinkData.map((user: userDrinkInfo) => {
           return (
             <UserCard
               teamId={props.match.params.id}
-              userId={user}
+              userDrinkInfo={user}
               firebase={props.firebase}
-              key={user}
+              key={user.id}
               authUser={props.authUser}
-              sendTotal={getTotal}
             />
           );
         })}
       </div>
     );
   }
-  return <div className="team-container">{usersCards}</div>;
+  return (
+    <div className="team-container">
+      {usersCards}
+      <div className="team-total">Total: {team && team.total}</div>
+    </div>
+  );
 };
 
 const condition = (authUser: firebase.User | null) => !!authUser;

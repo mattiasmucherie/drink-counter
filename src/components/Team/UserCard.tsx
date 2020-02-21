@@ -43,11 +43,8 @@ const UserCard: React.FC<UserCardProps> = props => {
   }, [props.firebase.db, props.userDrinkInfo.id]);
 
   const changeAmount = async (amount: number) => {
-    const docRef = props.firebase.db
-      .collection("teams")
-      .doc(props.teamId)
-      .collection("drinks")
-      .doc(props.userDrinkInfo.id);
+    const teamRef = props.firebase.db.collection("teams").doc(props.teamId);
+    const docRef = teamRef.collection("drinks").doc(props.userDrinkInfo.id);
     await docRef.update({
       total: props.firebase.incrementValue(amount),
       logs: props.firebase.addToArray({
@@ -55,6 +52,9 @@ const UserCard: React.FC<UserCardProps> = props => {
         createdBy: props.authUser.uid,
         amount
       })
+    });
+    await teamRef.update({
+      total: props.firebase.incrementValue(amount)
     });
   };
 

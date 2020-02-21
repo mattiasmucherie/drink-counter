@@ -39,8 +39,13 @@ const Team: React.FC<TeamProps> = props => {
       unsubscribe();
     };
   }, [props.firebase.db, props.match.params.id]);
-  let usersCards = <Spinner color="dark" />;
+  const getTotal = (total: string) => {
+    console.log(total);
+  };
 
+  console.log(team);
+
+  let usersCards = <Spinner color="dark" />;
   if (team && !loading) {
     usersCards = (
       <div className="team-wrapper">
@@ -53,6 +58,7 @@ const Team: React.FC<TeamProps> = props => {
               firebase={props.firebase}
               key={user}
               authUser={props.authUser}
+              sendTotal={getTotal}
             />
           );
         })}

@@ -10,6 +10,7 @@ interface UserCardProps {
   firebase: Firebase;
   teamId: string;
   authUser: User;
+  sendTotal: (total: string) => void;
 }
 
 const UserCard: React.FC<UserCardProps> = props => {
@@ -56,6 +57,7 @@ const UserCard: React.FC<UserCardProps> = props => {
           const data = snap.data();
           if (data) {
             setTotal(data.total);
+            props.sendTotal(data.total);
             setLogs(data.logs);
             setLoading({ ...loading, total: false });
           }

@@ -25,16 +25,21 @@ const App: React.FC = () => {
         ) : (
           <Router>
             <Navigation {...props} />
-            <Switch>
-              <Route exact path={ROUTES.LANDING} component={LandingPage} />
-              <Route path={ROUTES.SIGN_IN} component={SignIn} />
-              <Route path={ROUTES.SIGN_UP} component={SignUp} />
-              <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
-              <Route path={ROUTES.HOME} component={Home} {...props} />
-              <Route path={ROUTES.ACCOUNT} component={Account} />
-              <Route path={ROUTES.ADMIN} component={Admin} />
-              <Route path={ROUTES.TEAM_WITH_ID} component={Team} />
-            </Switch>
+            <div className="main">
+              <Switch>
+                <Route exact path={ROUTES.LANDING} component={LandingPage} />
+                <Route path={ROUTES.SIGN_IN} component={SignIn} />
+                <Route path={ROUTES.SIGN_UP} component={SignUp} />
+                <Route
+                  path={ROUTES.PASSWORD_FORGET}
+                  component={PasswordForget}
+                />
+                <Route path={ROUTES.HOME} component={Home} {...props} />
+                <Route path={ROUTES.ACCOUNT} component={Account} />
+                <Route path={ROUTES.ADMIN} component={Admin} />
+                <Route path={ROUTES.TEAM_WITH_ID} component={Team} />
+              </Switch>
+            </div>
           </Router>
         )
       }

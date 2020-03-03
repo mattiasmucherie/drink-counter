@@ -1,73 +1,68 @@
 @import "../../style/colors.scss";
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  &:focus {
-    outline: 0;
-  }
-}
 .navbar {
-  font-size: 18px;
-  padding: 5px;
-  margin: 0;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0px 3px 5px 2px #00000014;
-  .logo {
-    display: inline-block;
-    font-size: 20px;
-    color: $color-dark-blue;
-    text-decoration: none;
-    padding: 10px;
-    font-weight: bolder;
-    justify-content: flex-start;
-  }
+  position: fixed;
+  background-color: $color-dark-blue;
+  transition: width 200ms ease-in-out;
   .main-nav {
-    list-style-type: none;
-    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    .nav-links {
-      text-decoration: none;
-      color: $color-dark-gray;
-      &.active {
-        color: $color-blue;
-      }
-      &:hover {
-        color: $color-gray-text;
-      }
+    align-items: center;
+    height: 100%;
+    .nav-item {
+      width: 5rem;
     }
-    li {
-      text-align: center;
-      margin: 0px 5px;
-      padding: 5px;
+    .link-text {
+      display: none;
     }
-    .btn-sign-out {
+    .nav-link {
+      display: flex;
+      align-items: center;
+      height: 5rem;
+      width: 5rem;
+      color: white;
       text-decoration: none;
-      color: $color-dark-gray;
-      background: none;
-      border: none;
-      padding: 0px;
-      font: inherit;
-      cursor: pointer;
-      outline: inherit;
-      &:hover {
-        color: $color-gray-text;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+    .main-nav {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      .nav-item {
+        height: 100%;
       }
     }
   }
 }
-@media screen and (min-width: 768px) {
+
+@media only screen and (min-width: 600px) {
   .navbar {
-    padding: 10px;
-    .logo {
-      margin-left: 5px;
-      font-size: 24px;
+    width: 5rem;
+    height: 100vh;
+    top: 0;
+    .main-nav {
+      flex-direction: column;
+      .nav-item {
+        width: 100%;
+        &:last-child {
+          margin-top: auto;
+        }
+      }
+    }
+    &:hover {
+      width: 16rem;
+      .link-text {
+        display: block;
+      }
     }
   }
 }

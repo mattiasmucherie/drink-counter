@@ -16,26 +16,27 @@ const NavigationAuth = () => {
   return (
     <nav className="navbar">
       <ul className="main-nav">
-        <NavLink to={ROUTES.LANDING} exact className="nav-item logo">
-          <span role="img" aria-label="Beer">
-            Drink Counter
-          </span>
-        </NavLink>
+        <li className="nav-item">
+          <NavLink to={ROUTES.LANDING} exact className="nav-link">
+            <i className="fas fa-beer"></i>
+            <span className="link-text">Drink Counter</span>
+          </NavLink>
+        </li>
         <li className="nav-item">
           <NavLink to={ROUTES.HOME} className="nav-link">
+            <i className="fas fa-user-friends"></i>
             <span className="link-text">Home</span>
-            <i className="fas fa-home"></i>
           </NavLink>
         </li>
         <li className="nav-item">
           <NavLink to={ROUTES.ACCOUNT} className="nav-link">
-            <span className="link-text">Profile</span>
             <i className="fas fa-user-circle"></i>
+            <span className="link-text">Profile</span>
           </NavLink>
         </li>
         <li className="nav-item">
-          <span className="link-text">Sign Out</span>
           <SignOutButton />
+          <span className="link-text">Sign Out</span>
         </li>
       </ul>
     </nav>

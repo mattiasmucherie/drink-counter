@@ -2,8 +2,7 @@
 
 .navbar {
   position: fixed;
-  background-color: $color-dark-blue;
-  transition: width 200ms ease-in-out;
+  background-color: $color-dark-blue-darker;
   .main-nav {
     list-style: none;
     padding: 0;
@@ -12,18 +11,24 @@
     align-items: center;
     height: 100%;
     .nav-item {
-      width: 5rem;
+      width: 100%;
     }
     .link-text {
       display: none;
+      margin-left: 1rem;
+      transition: all 150ms ease-in-out;
     }
     .nav-link {
       display: flex;
       align-items: center;
       height: 5rem;
-      width: 5rem;
-      color: white;
+      color: $color-gray-text;
       text-decoration: none;
+      padding: 0 1rem;
+
+      i {
+        font-size: 2rem;
+      }
     }
   }
 }
@@ -39,6 +44,9 @@
       justify-content: space-evenly;
       .nav-item {
         height: 100%;
+        .nav-link {
+          justify-content: center;
+        }
       }
     }
   }
@@ -49,6 +57,7 @@
     width: 5rem;
     height: 100vh;
     top: 0;
+    transition: width 100ms ease;
     .main-nav {
       flex-direction: column;
       .nav-item {
@@ -62,6 +71,11 @@
       width: 16rem;
       .link-text {
         display: block;
+        white-space: nowrap;
+      }
+      .nav-link {
+        i {
+        }
       }
     }
   }
